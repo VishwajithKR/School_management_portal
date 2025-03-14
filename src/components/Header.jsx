@@ -1,9 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { logoutAccount } from "../redux/userSlice";
 
 const Header = () => {
   const role = useSelector((state) => state.user.registerData[0].role);
+  const dispatch = useDispatch();
   const location = useLocation();
   const navLinks = [
     { path: "/", label: "Home" },
@@ -11,12 +13,27 @@ const Header = () => {
     { path: "/about", label: "About" },
   ];
 
-  if (role === "student") {
-    navLinks.splice(2, 0,{ path: "/assignment", label: "Assignment" });
-  } else if (role === "teacher") {
-    navLinks.splice(2, 0,{ path: "/result", label: "Result" });
+  switch (role) {
+    case "student":
+      navLinks.splice(2, 0, { path: "/assignment", label: "Assignment" });
+      navLinks.splice(3, 0, { path: "/result", label: "Result" });
+      break;
+    case "teacher":
+      navLinks.splice(2, 0, { path: "/class", label: "Classes" });
+      navLinks.splice(3, 0, { path: "/syllabus", label: "Syllabus" });
+      break;
+    case "principal":
+      navLinks.splice(2, 0, { path: "/managementattendance", label: "Manage Attendance" });
+      navLinks.splice(3, 0, { path: "/studentlist", label: "Student's List" });
+      break;
+    case "admin":
+      navLinks.splice(2, 0, { path: "/addmission", label: "Admission" });
+      navLinks.splice(3, 0, { path: "/compliance", label: "Compliance" });
+      break;
+    default:
+      console.warn("Unknown role: ", role);
   }
-
+  
   return (
     <div className="flex w-full h-20 bg-[#5c8dc5] sticky top-0 justify-between items-center px-2">
       <div className="w-[20%] flex items-center justify-center gap-3.5">
@@ -62,7 +79,7 @@ const Header = () => {
               {role}
             </h2>
 
-            <Link to="/profile">
+           
               <img
                 title="profile"
                 width={50}
@@ -71,11 +88,17 @@ const Header = () => {
                 src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg"
                 alt="profile"
               />
-            </Link>
+           
           </>
         )}
 
-        
+      <div className="flex w-1/2 items-center justify-start absolute -bottom-[7rem] border-[#5c8dc5] overflow-hidden rounded-lg right-10 border-2">
+        <ul className="flex flex-col gap-2 w-full bg-gray-300 rounded-lg">
+        <Link to="/profile">  <li className="hover:bg-[#5c8dc5] hover:text-white w-full cursor-pointer px-4 py-2 ">Profile</li> </Link>
+         <li onClick={() => dispatch(logoutAccount())} className="hover:bg-[#5c8dc5] hover:text-white w-full cursor-pointer px-4 py-2">Logout</li>
+        </ul>
+      </div>
+
       </div>
     </div>
   );

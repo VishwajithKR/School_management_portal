@@ -3,18 +3,24 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import EmptyPage from "./EmptyPage";
+import Home from "./pages/Home";
 import Assignment from "./pages/Assignment";
 import Result from "./pages/Result";
 import Course from "./pages/Course";
 import About from "./pages/About";
-import Home from "./pages/Home";
-import ProtectedRoute from "./customHooks/ProtectedRoute";
 import Profile from "./pages/Profile";
+import Class from './pages/Class';
+import Syllabus from './pages/Syllabus';
+import ManagementAttendance from "./pages/ManagementAttendance";
+import Addmission from "./pages/Addmission";
+import Compliance from "./pages/Compliance";
+import StudentList from "./pages/StudentList";
+import EmptyPage from "./EmptyPage";
+import ProtectedRoute from "./customHooks/ProtectedRoute";
 import { useSelector } from "react-redux";
 
 const AppRoutes = () => {
-  const useRole = useSelector((state) => state.user.registerData[0].role);
+  const useRole = useSelector((state) => state?.user?.registerData[0]?.role);
   console.log(useRole)
   return (
     <BrowserRouter>
@@ -25,9 +31,19 @@ const AppRoutes = () => {
               <Route index element={<Home />} />
               <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
                 <Route path="/assignment" element={<Assignment />} />
+                <Route path="/result" element={<Result />} />
               </Route>
               <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
-                <Route path="/result" element={<Result />} />
+              <Route path="/class" element={<Class />} />
+              <Route path="/syllabus" element={<Syllabus />} />
+              </Route>
+              <Route element={<ProtectedRoute allowedRoles={["principal"]} />}>
+              <Route path="/managementattendance" element={<ManagementAttendance />} />
+              <Route path="/studentlist" element={<StudentList />} />
+              </Route>
+              <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+              <Route path="/addmission" element={<Addmission />} />
+              <Route path="/compliance" element={<Compliance />} />
               </Route>
               <Route path="/course" element={<Course />} />
               <Route path="/about" element={<About />} />
