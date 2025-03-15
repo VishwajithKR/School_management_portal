@@ -18,14 +18,14 @@ import StudentList from "./pages/StudentList";
 import EmptyPage from "./EmptyPage";
 import ProtectedRoute from "./customHooks/ProtectedRoute";
 import { useSelector } from "react-redux";
+// import { roleBasedRoutes } from "./assets/Formdata";
 
 const AppRoutes = () => {
   const useRole = useSelector((state) => state?.user?.registerData[0]?.role);
-  console.log(useRole)
   return (
     <BrowserRouter>
       <Routes>
-        {useRole ? (
+        {useRole !=="" ? (
           <>
             <Route element={<MainLayout />}>
               <Route index element={<Home />} />

@@ -10,27 +10,28 @@ export const userSlice = createSlice({
       password: "",
     },
     {
-      name: "",
+      name: "teacher_1",
       email: "tt@tt.tt",
       role: "teacher",
       password: "tttt",
     },
     {
-      name: "",
+      name: "student_1",
       email: "ss@ss.ss",
       role: "student",
       password: "ssss",
     },{
-      name: "",
+      name: "admin_1",
       email: "aa@aa.aa",
       role: "admin",
       password: "aaaa",
     },{
-      name: "",
+      name: "principal_1",
       email: "pp@pp.pp",
       role: "principal",
       password: "pppp",
-    }],
+    }]
+    ,
     userData: [{
       name: "",
       email: "",
@@ -38,23 +39,23 @@ export const userSlice = createSlice({
       password: "",
     },
     {
-      name: "",
+      name: "teacher_1",
       email: "tt@tt.tt",
       role: "teacher",
       password: "tttt",
     },
     {
-      name: "",
+      name: "student_1",
       email: "ss@ss.ss",
       role: "student",
       password: "ssss",
     },{
-      name: "",
+      name: "admin_1",
       email: "aa@aa.aa",
       role: "admin",
       password: "aaaa",
     },{
-      name: "",
+      name: "principal_1",
       email: "pp@pp.pp",
       role: "principal",
       password: "pppp",
