@@ -80,7 +80,7 @@ const Header = () => {
             </h2>
 
            
-              <img
+               <img
                 title="profile"
                 width={50}
                 height={60}
@@ -93,7 +93,7 @@ const Header = () => {
         )}
 
       <div className="flex w-1/2 items-center justify-start absolute -bottom-[7rem] border-[#5c8dc5] overflow-hidden rounded-lg right-10 border-2">
-        <ul className="flex flex-col gap-2 w-full bg-gray-300 rounded-lg">
+        <ul className="flex flex-col gap-2 w-full bg-gray-300">
         <Link to="/profile">  <li className="hover:bg-[#5c8dc5] hover:text-white w-full cursor-pointer px-4 py-2 ">Profile</li> </Link>
          <li onClick={() => dispatch(logoutAccount())} className="hover:bg-[#5c8dc5] hover:text-white w-full cursor-pointer px-4 py-2">Logout</li>
         </ul>
